@@ -1,0 +1,92 @@
+<html>
+<head>
+StarMobile Mini-Project
+<br>
+
+</head>
+
+
+<body>
+    
+<table id="table">
+</table>
+<button type="res_btn" onclick="refresh()">REFRESH</button>
+<script type = "text/javascript"
+    src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<body>
+<script>
+    var url = "http://ec2-23-20-143-74.compute-1.amazonaws.com/";
+    /*
+    $.getJSON(url, function (json, status) {
+              
+              myfunction(json)
+                console.log("LENGTH : " + json.length);
+              });
+              */
+    
+       
+              function myfunction(t) {
+                var table = document.getElementById("table");
+                if (t.length == 0) {
+                      var row = table.insertRow(0);
+                      var cell1 = row.insertCell(0);
+                      var i = document.createElement("INPUT");
+                      i.setAttribute("type","text");
+                      i.setAttribute("value","NOTHING TO DISPLAY");
+                      i.style.border = 'white';
+                      cell1.appendChild(i);
+                  } else {
+                      var row_count = 0;
+                      var len = 0;
+                  while (len < t.length) {
+                      var temp = t[len][0];
+                      var row = table.insertRow(row_count);
+                      var cell1 = row.insertCell(0);
+                      
+                      if (temp.viewType == "editBox") {
+                          var i = document.createElement("INPUT");
+                          i.setAttribute("type","text");
+                          i.readOnly = true;
+                          i.setAttribute("value",temp.value);
+                      } else if (temp.viewType == "button") {
+                          var i = document.createElement("INPUT");
+                          i.setAttribute("type","button");
+                          i.setAttribute("value",temp.value);
+                      } else if (temp.viewType == "checkbox") {
+                          var i = document.createElement("INPUT");
+                          i.setAttribute("type","checkbox");
+                          if (temp.value == "Selected")
+                            i.checked = true;
+                          else
+                            i.checked = false;
+                      } else if (temp.viewType == "radioButton") {
+                          var i = document.createElement("INPUT");
+                          i.setAttribute("type","radio");
+                          if (temp.value == "Yes")
+                            i.checked = true;
+                          else
+                            i.checked = false;
+                      } else if (temp.viewType == "hyperlink") {
+                          var i = document.createElement('a');
+                          i.href = temp.value;
+                          i.target="_blank";
+                          i.innerHTML = temp.value;
+                      }
+                      
+                      cell1.appendChild(i);
+                      row_count += 1;
+                      len += 1;
+                  }
+                  }
+              }
+
+                function refresh() {
+                    location.reload(true);
+                }
+
+
+</script>
+
+</body>
+</html>
