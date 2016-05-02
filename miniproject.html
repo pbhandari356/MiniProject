@@ -17,16 +17,16 @@ StarMobile Mini-Project
 <body>
 <script>
     var url = "http://ec2-23-20-143-74.compute-1.amazonaws.com/";
-    /*
-    $.getJSON(url, function (json, status) {
-              
-              myfunction(json)
-                console.log("LENGTH : " + json.length);
-              });
-              */
     
-       
-              function myfunction(t) {
+              $.getJSON(url, function (json, status) {
+                        update_disp(json)
+                        console.log("LENGTH : " + json.length);
+              }).fail( function(data, status, err) {
+                        console.error("Could not get json data: " + status + " error: " + err)
+              });
+              
+              
+              function update_disp(t) {
                 var table = document.getElementById("table");
                 if (t.length == 0) {
                       var row = table.insertRow(0);
